@@ -1,0 +1,5 @@
+1;Vinícius Júnior;1;atacante;25;3 
+2;Alisson;1;goleiro;33;0 
+3;Lionel Messi;3;atacante;38;4 
+4;Kylian Mbappé;4;atacante;27;5 
+5;Wataru Endo;5;meio;32;1 

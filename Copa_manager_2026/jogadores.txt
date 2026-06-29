@@ -1,3 +1,0 @@
-1;vinicius junior;1;atacante;25;3
-2;alisson;1;goleiro;33;0
-3;lionel messi;3;atacante;38;4

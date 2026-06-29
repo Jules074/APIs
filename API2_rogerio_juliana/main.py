@@ -24,7 +24,7 @@ def main():
                 print('Saindo do programa...')
                 salvar_selecoes(lista_selecoes)
                 salvar_jogadores(lista_jogadores)
-                #salvar_partidas(lista_partidas)
+                salvar_partidas(lista_partidas)
                 print('Salvo!')
                 clearscreen()
                 break
@@ -111,14 +111,22 @@ def main():
 
 
 
-            elif menu == 11: #cadastrar partida
-                ...
+            elif menu == 10: #cadastrar partida
+                verificacao = cadastrar_partida(lista_partidas,lista_selecoes)
+
+                if verificacao == 0:
+                    print('Partida já cadastrada!!')
+                    clearscreen()
+                else:
+                    lista_partidas = verificacao
+                    clearscreen()
             
-            elif menu == 12: #excluir partida
-                ...
+            elif menu == 11: #excluir partida
+                excluir_partida(lista_partidas,lista_selecoes)
+                clearscreen()
             
-            elif menu == 13: #listar partidas
-                list_partidas(lista_partidas)
+            elif menu == 12: #listar partidas
+                list_partidas(lista_partidas,lista_selecoes)
                 clearscreen()
 
         

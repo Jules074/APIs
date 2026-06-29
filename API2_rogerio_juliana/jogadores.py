@@ -1,5 +1,3 @@
-from persistencia import open_file_jogadores #copia dos jogadores
-from persistencia import open_file_selecoes #copia das selecoes
 from utils import *
 
 
@@ -73,7 +71,7 @@ def cadastrar_jogador(jogadores,selecoes):
             novo_jogador = {'jogador_id':dados[0],'nome':dados[1],'id':dados[2],'posicao':dados[3],'idade':dados[4],'gols':dados[5]}
             lista_jogadores_temp.append(novo_jogador)
 
-            print(f'Novo jogador {novo_jogador['nome']} de ID {novo_jogador['id']} adicionado!')
+            print(f'Novo jogador {novo_jogador['nome']} de ID {novo_jogador['jogador_id']} adicionado!')
 
             return lista_jogadores_temp    
 
@@ -226,12 +224,9 @@ def ordenar_por_atributo_jogadores(jogadores,selecoes):
                     for selecao in selecoes:
                         if i['id'] == selecao['id']:
                             nome_selecao = selecao['nome']
-                            break
-                        break
-                
-                for i in achados:
+
                     print(f'Nome: {i['nome']}, ID: {i['id']}, Seleção: {nome_selecao}')
-                        
+                break        
 
         elif menu == 5: #por posicao
             achados = filtrar_por_posicao(jogadores)

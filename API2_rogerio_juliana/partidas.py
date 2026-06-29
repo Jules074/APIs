@@ -1,25 +1,32 @@
 #id;selecao_casa_id;selecao_fora_id;gols_casa;gols_fora;fase
+from utils import *
 
-from persistencia import open_file_partidas
-from persistencia import open_file_selecoes
-from utils import clearscreen
+def list_partidas(partidas,selecoes):
+    lista_fases = [{'2°s de final':32}, {'8°s de final':16}, {'4°s de final':8}, {'semifinais':4}, {'final':2}, {'3° lugar':3}]
 
-
-copia_partidas = open_file_partidas()
-copia_selecoes = open_file_selecoes()
-
-def list_partidas(partidas):
     for partida in partidas:
-        for selecao in copia_selecoes:
+        for fase in lista_fases:
+            if partida['fase'] == fase.values():
+                nome_fase = fase.keys()
+
+
+        for selecao in selecoes:
             if partida['casa_id'] == selecao['id']:
                 casa = selecao['nome']
             if partida['fora_id'] == selecao['id']:
                 fora = selecao['nome']
-            print(f'Partida: {partida['id']}, Casa: {casa}, Fora: {fora}')
+
+            print(f'''
+    ---- Partida: {partida['id']} ----, 
+    * {casa} ( {partida['gols_casa']} X {partida['gols_fora']} ) {fora}
+    * Fase: {nome_fase}
+
+''')
+    
 
 
 
-def achar_maior_id(partidas):
+def achar_maior_id(partidas): #cadastrar partidas
     maior_id = 0
     for partida in partidas:
         if partida['id'] > maior_id:
@@ -28,34 +35,70 @@ def achar_maior_id(partidas):
 
 
 
-def cadastrar_partida(partidas):
+def cadastrar_partida(partidas,selecoes):
     lista_partidas_temp = partidas
 
-    novo_partida_nome = input('''
-    Digite o nome da nova seleção:
+    selecao_casa_id = int(input('''
+    Digite o ID da 1° seleção:
                             
-    >> ''')
+    >> '''))
+
+    selecao_fora_id = int(input('''
+    Digite o ID da 2° seleção:
+                            
+    >> '''))
+
     
     for partida in partidas:
-        if novo_partida_nome == partida['nome']:
-            print('Este partida já está cadastrado!')
-            return None
-    
-    maior_id = achar_maior_id(partidas)
-    novo_id = maior_id + 1
+        if partida['selecao_casa_id'] == selecao_casa_id and partida['selecao_fora_id'] == selecao_fora_id:
+            return 0
 
-    dados = [novo_id, novo_partida_nome.strip()]
+        elif partida['selecao_fora_id'] == selecao_casa_id and partida['selecao_casa_id'] == selecao_fora_id:
+            return 0
+        
+        else:
 
-    novo_partida = {'id':dados[0],'nome':dados[1]}
+            gols_casa = int(input('''
+            Digite a quantidade de gols da 1° seleção:
+                                    
+            >> '''))
 
-    lista_partidas_temp.append(novo_partida)
+            gols_fora = int(input('''
+            Digite a quantidade de gols da 2° seleção:
+                                    
+            >> '''))
 
-    clearscreen()
-    return lista_partidas_temp
+            fase = menu_fases()
+            
+        
+            maior_id = achar_maior_id(partidas)
+            novo_id = maior_id + 1
+
+
+            #id;selecao_casa_id;selecao_fora_id;gols_casa;gols_fora;fase
+            dados = [novo_id, selecao_casa_id.strip(),selecao_fora_id.strip(),gols_casa.strip(),gols_fora.strip(),fase.strip()]
+
+            nova_partida = {'id':dados[0],'selecao_casa_id':dados[1],'selecao_fora_id':dados[2],'gols_casa':dados[3],'gols_fora':dados[4],'fase':dados[5]}
+
+            lista_partidas_temp.append(nova_partida)
+
+
+            for selecao in selecoes:
+                if partida['casa_id'] == selecao['id']:
+                    casa = selecao['nome']
+                if partida['fora_id'] == selecao['id']:
+                    fora = selecao['nome']
+
+
+            print(f'Nova partida cadastrada: {casa} X {fora} de ID {nova_partida['id']}.')
+
+
+            clearscreen()
+            return lista_partidas_temp
 
             
 
-def excluir_partida(partidas):
+def excluir_partida(partidas,selecoes):
     lista_partidas_temp = partidas
 
     id = int(input('''
@@ -64,10 +107,17 @@ def excluir_partida(partidas):
 >> '''))
     
     for partida in partidas:
+        for selecao in selecoes:
+            if partida['casa_id'] == selecao['id']:
+                casa = selecao['nome']
+            if partida['fora_id'] == selecao['id']:
+                fora = selecao['nome']
+
         if partida['id'] == id:
-            print(f'O partida {partida['nome']} foi excluido!')
+            print(f'A partida {casa} X {fora} foi excluida!')
             lista_partidas_temp.remove(partida)
-            
+        
+
     return lista_partidas_temp
 
 

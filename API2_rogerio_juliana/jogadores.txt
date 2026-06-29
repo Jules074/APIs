@@ -1,3 +1,5 @@
 1;vinicius junior;1;atacante;25;3
 2;alisson;1;goleiro;33;0
 3;Lionel Messi;2;atacante;38;4
+4;ronaldinho gaucho;1;zagueiro;60;10
+5;mbappe;3;ponta;26;5

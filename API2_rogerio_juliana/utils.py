@@ -73,3 +73,18 @@ def menu_ordem_jogadores():
 
 >> '''))
     return menu
+
+
+def menu_fases():
+    fase = int(input('''
+            Indique a fase da partida:
+                         
+            * 2°s de final (32)
+            * 8°s de final (16)
+            * 4°s de final (8)
+            * Semifinais (4)
+            * Final (2)
+            * 3° lugar (3)
+            
+            >> '''))
+    return fase

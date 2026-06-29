@@ -76,7 +76,7 @@ def salvar_jogadores(jogadores):
     
 
 
-def salvar_partida(partidas):
+def salvar_partidas(partidas):
     lines = []
     for partida in partidas: #cada dicionario dentro da lista
         lines.append(f'{partida['id']};{partida['id_casa']};{partida['id_fora']};{partida['gols_casa']};{partida['gols_fora']};{partida['fase']};'+'\n') 

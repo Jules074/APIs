@@ -30,9 +30,12 @@ def cadastrar_selecao(selecoes):
         if nova_selecao_nome == selecao['nome']:
             return 0
         
-        for i in nova_selecao_nome:
-            if ord(i) not in range(97,123):
-                return 1
+        for i in nova_selecao_nome.lower():
+            if ord(i) not in range(97,123): #alfabeto minusculo
+                if ord(i) == 32:
+                    pass
+                else:
+                    return 1
     
     maior_id = achar_maior_id(lista_selecoes_temp)
     novo_id = maior_id + 1

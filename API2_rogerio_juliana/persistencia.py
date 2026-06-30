@@ -45,7 +45,7 @@ def open_file_partidas():
 
     for linha in linhas: 
         dados = linha.strip().split(';')
-        partida = {'id': int(dados[0]), 'id_casa': int(dados[1]), 'id_fora': int(dados[2]), 
+        partida = {'id': int(dados[0]), 'selecao_casa_id': int(dados[1]), 'selecao_fora_id': int(dados[2]), 
                    'gols_casa': int(dados[3]), 'gols_fora': int(dados[4]), 'fase': dados[5]}
     
     arquivo.close()
@@ -79,9 +79,9 @@ def salvar_jogadores(jogadores):
 def salvar_partidas(partidas):
     lines = []
     for partida in partidas: #cada dicionario dentro da lista
-        lines.append(f'{partida['id']};{partida['id_casa']};{partida['id_fora']};{partida['gols_casa']};{partida['gols_fora']};{partida['fase']};'+'\n') 
+        lines.append(f'{partida['id']};{partida['selecao_casa_id']};{partida['selecao_fora_id']};{partida['gols_casa']};{partida['gols_fora']};{partida['fase']};'+'\n') 
         
-    file = open('selecoes.txt', 'w')
+    file = open('partidas.txt', 'w')
     file.writelines(lines)
     file.close()
 

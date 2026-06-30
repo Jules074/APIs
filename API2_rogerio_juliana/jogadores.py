@@ -181,9 +181,14 @@ def ordenar_por_atributo_jogadores(jogadores,selecoes):
             if achados == 1:
                 print('Não há jogadores com este nome...')
                 break
+
             else:
                 for i in achados:
-                    print(f'Nome: {i['nome']}, ID: {i['id']}')
+                    for selecao in selecoes:
+                        if i['id'] == selecao['id']:
+                            nome_selecao = selecao['nome']
+                    print(f'Jogador: {i['nome']}, ID: {i['jogador_id']}, Idade: {i['idade']}, Seleção: {nome_selecao}, Posição: {i['posicao']}, Gols: {i['gols']}')
+
                 break
         
 
@@ -207,7 +212,10 @@ def ordenar_por_atributo_jogadores(jogadores,selecoes):
                 break
             else:
                 for i in achados:
-                    print(f'Nome: {i['nome']}, ID: {i['id']}')
+                    for selecao in selecoes:
+                        if i['id'] == selecao['id']:
+                            nome_selecao = selecao['nome']
+                    print(f'Nome: {i['nome']}, Seleção: {nome_selecao}')
                 break
 
 
